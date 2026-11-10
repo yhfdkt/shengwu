@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="高中生物交互课。跟随七段分子动画，从细胞核里的基因读到核糖体上的多肽。">
+  <title>基因表达实验室｜从基因到蛋白质</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="course.js"></script>
+  <script defer src="molecules.js"></script>
+  <script defer src="player.js"></script>
+</head>
+<body>
+  <a class="skip" href="#scene-title">跳到动画场景</a>
+  <header class="masthead">
+    <div class="brand">
+      <img class="brand-mark" src="mark.svg" width="42" height="42" alt="">
+      <div><h1>基因表达实验室</h1><p>GENE EXPRESSION LAB</p></div>
+    </div>
+    <div class="header-tools">
+      <span class="local-status"><i></i> 高中生物 · 交互实验</span>
+      <button id="large-type" class="tool-button" type="button" aria-pressed="false"><span aria-hidden="true">Aa</span> 大字</button>
+      <button id="fullscreen" class="tool-button" type="button" aria-pressed="false"><span aria-hidden="true">⛶</span> 全屏</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="lesson-head" aria-labelledby="lesson-title">
+      <div>
+        <div class="eyebrow"><span class="signal"></span> 分子与细胞 <span class="divider"></span> 交互课程 01</div>
+        <h2 id="lesson-title">从基因到蛋白质</h2>
+      </div>
+      <div class="journey" aria-label="本课的信息传递路径">
+        <span class="journey-dna">DNA</span><b>→</b><span class="journey-rna">RNA</span><b>→</b><span class="journey-peptide">蛋白质</span>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <nav class="rail panel" aria-label="七步课程导航">
+        <div class="rail-head"><span class="panel-label">实验路线</span><span class="counter" id="route-counter">01 / 07</span></div>
+        <ol class="steps" id="steps"></ol>
+        <div class="rail-note"><span class="rail-note-icon" aria-hidden="true">◎</span><span>跟随遗传信息<br>从细胞核来到核糖体</span></div>
+      </nav>
+
+      <section class="scene panel" aria-labelledby="scene-title">
+        <div class="scene-heading">
+          <div><p class="eyebrow" id="scene-kicker"></p><h3 id="scene-title" tabindex="-1"></h3></div>
+          <span class="model-chip" id="scene-location"></span>
+        </div>
+        <div class="viewport">
+          <svg id="art" viewBox="0 0 800 440" role="group" aria-label="分子动画" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="viewport-meta" aria-hidden="true"><span class="target-mark">⊕</span> <span id="scene-scale">细胞剖面</span></div>
+          <div class="schematic-tag">教学示意 · 非比例</div>
+        </div>
+        <div class="caption">
+          <span class="caption-icon" aria-hidden="true">✧</span>
+          <div><span id="caption-label" class="panel-label"></span><p id="caption-text"></p></div>
+        </div>
+      </section>
+
+      <aside class="inspector panel" aria-label="本步讲解和任务">
+        <div class="inspector-heading"><span class="panel-label">观察与操作</span><span id="task-kind" class="lab-chip"></span></div>
+        <div id="lesson-copy"></div>
+        <div id="task-card" class="task-card"></div>
+        <p id="task-feedback" class="feedback" role="status" aria-atomic="true" hidden></p>
+        <div id="lesson-detail" class="lesson-detail"></div>
+        <button id="next-scene" class="next-scene" type="button"><span id="next-scene-text"></span><span aria-hidden="true">→</span></button>
+      </aside>
+
+      <section class="dock panel" aria-label="动画播放控制">
+        <div class="transport">
+          <button id="prev-frame" class="icon-button" aria-label="上一关键帧" title="上一关键帧" type="button">‹</button>
+          <button id="play" class="play-button" type="button"><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">播放</span></button>
+          <button id="next-frame" class="icon-button" aria-label="下一关键帧" title="下一关键帧" type="button">›</button>
+          <button id="replay" class="icon-button replay" aria-label="重播本步" title="重播本步" type="button">↻</button>
+        </div>
+        <div class="scrub">
+          <div class="scrub-heading"><span id="frame-name"></span><span id="clock" class="clock"></span></div>
+          <div class="timeline">
+            <input id="progress" type="range" min="0" max="1000" value="0" aria-label="动画时间轴">
+            <div id="frame-marks" aria-hidden="true"></div>
+          </div>
+        </div>
+        <label class="speed"><span>速度</span><select id="speed" aria-label="播放速度">
+          <option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option>
+        </select></label>
+      </section>
+    </div>
+
+    <footer class="foot"><span>高中生物 <span class="divider"></span> 基因的表达</span><span>所有分子图均为课堂示意</span></footer>
+  </main>
+</body>
+</html>
